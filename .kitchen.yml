@@ -1,0 +1,71 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  #- name: ubuntu-12.04
+  #- name: centos-6.4
+  - name: centos-6.5
+
+suites:
+  - name: default
+    run_list:
+      - recipe[timezone-ii]
+      - recipe[yum]     
+      - recipe[zabbix-server-test::default]
+      - recipe[apache2]
+      - recipe[php]
+      - recipe[build-essential]
+      - recipe[database::mysql]
+      - recipe[mysql::server]
+      - recipe[zabbix]
+      - recipe[zabbix::database]
+      - recipe[zabbix::server]
+      - recipe[zabbix::web]
+    attributes:
+      ubuntu:
+        mirror_site_url: http://ftp.jaist.ac.jp/pub/Linux/ubuntu/
+        version: 12.04
+        need_deb_src: false
+        need_update: true
+      tz: "Asia/Tokyo"
+      mysql:
+        "server_root_password": "ilovethispassword"
+        "server_repl_password": "ilovethispassword"
+        "server_debian_password": "ilovethispassword"
+      zabbix:
+        agent:
+          branch: "ZABBIX%20Latest%20Stable"
+          version: "2.2.1"
+          source_url: null
+          install: true
+          install_method: prebuild
+          servers:
+            - localhost
+        server:
+          branch: "ZABBIX%20Latest%20Stable"
+          version: "2.2.1"
+          source_url: null
+          install: true
+          install_method: source
+          db_install_method: mysql
+          dbname: "zabbix"
+          dbuser: "zabbix" 
+          dbhost: "localhost"
+          dbpassword: "ilovethispassword"
+          dbport: "3306"
+          configure_options:
+            - "--with-libcurl"
+            - "--with-net-snmp"
+            - "--with-mysql"
+        web:
+          install: true
+          fqdn: localhost
+          install_method: "apache"
+          user: "apache"
+        database:
+          dbpassword: "ilovethispassword"
+ 
