@@ -66,6 +66,9 @@ suites:
           fqdn: localhost
           install_method: "apache"
           user: "apache"
+          php:
+            settings:
+              date.timezone: "'Asia/Tokyo'"
         database:
           dbpassword: "ilovethispassword"
  
