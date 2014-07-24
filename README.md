@@ -26,4 +26,5 @@ test
 TODO
 ====
 
-using [infrataster](https://github.com/ryotarai/infrataster)
+to test using [infrataster](https://github.com/ryotarai/infrataster)
+research zabbix server use DNS default to connect to client
