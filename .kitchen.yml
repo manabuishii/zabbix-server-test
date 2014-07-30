@@ -15,6 +15,7 @@ suites:
     run_list:
       - recipe[timezone-ii]
       - recipe[yum]     
+      - recipe[mysql::client]
       - recipe[zabbix-server-test::default]
       - recipe[apache2]
       - recipe[php]

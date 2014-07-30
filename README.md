@@ -8,7 +8,7 @@ Using mysql as backend database
 install
 =======
 
-1. install mysql-devel for gem
+1. install mysql-devel by mysql::client
 2. Apache httpd
 3. MySQL
 4. Zabbix client

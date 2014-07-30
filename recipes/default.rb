@@ -1,5 +1,1 @@
-case node.platform
-when 'centos'
-package "mysql-devel"
-end
-
+# for centos mysql-devel is needed. but install it by recipe[mysql::client]
