@@ -12,6 +12,6 @@ end
 
 describe "zabbix web" do
   describe command('curl http://localhost/') do
-    it { should return_stdout /Zabbix 2.2.1/}
+    it { should return_stdout /Zabbix 2.2.5/}
   end
 end

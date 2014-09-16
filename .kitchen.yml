@@ -40,7 +40,7 @@ suites:
       zabbix:
         agent:
           branch: "ZABBIX%20Latest%20Stable"
-          version: "2.2.1"
+          version: "2.2.5"
           source_url: null
           install: true
           install_method: prebuild
@@ -48,7 +48,7 @@ suites:
             - localhost
         server:
           branch: "ZABBIX%20Latest%20Stable"
-          version: "2.2.1"
+          version: "2.2.5"
           source_url: null
           install: true
           install_method: source
