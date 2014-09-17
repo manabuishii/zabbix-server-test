@@ -11,7 +11,11 @@ end
 
 
 describe "zabbix web" do
-  describe command('curl http://localhost/') do
+  getcommand = "curl http://localhost"
+  if ['Debian', 'Ubuntu'].include?(os[:family])
+    getcommand = "wget http://localhost -O -"
+  end
+  describe command(getcommand) do
     it { should return_stdout /Zabbix 2.2.5/}
   end
 end

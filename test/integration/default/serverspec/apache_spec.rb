@@ -16,8 +16,12 @@ describe "apache Daemon" do
     expect(port(80)).to be_listening
   end
 
+  httpservice="httpd"
+  if ['Debian', 'Ubuntu'].include?(os[:family])
+    httpservice="apache2"
+  end
   it "has a running service of httpd" do
-    expect(service("httpd")).to be_running
+    expect(service(httpservice)).to be_running
   end
 
 end
