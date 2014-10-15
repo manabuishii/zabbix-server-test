@@ -1,14 +1,5 @@
 require 'serverspec'
-
-include Serverspec::Helper::Exec
-include Serverspec::Helper::DetectOS
-
-RSpec.configure do |c|
-  c.before :all do
-    c.path = '/sbin:/usr/sbin'
-  end
-end
-
+set :backend, :exec
 
 describe "apache Daemon" do
 
@@ -17,7 +8,7 @@ describe "apache Daemon" do
   end
 
   httpservice="httpd"
-  if ['Debian', 'Ubuntu'].include?(os[:family])
+  if ['debian', 'ubuntu'].include?(os[:family])
     httpservice="apache2"
   end
   it "has a running service of httpd" do
