@@ -40,6 +40,7 @@ suites:
         "server_debian_password": "ilovethispassword"
       zabbix:
         agent:
+          checksum: "1d5b62790c04966944f09bb629cbdc2749f8767b5da7d246fce6aab1397741bd"
           branch: "ZABBIX%20Latest%20Stable"
           version: "2.2.5"
           source_url: null
