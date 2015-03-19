@@ -4,12 +4,20 @@ driver:
 
 provisioner:
   name: chef_solo
+  chef_omnibus_install_options: ' -d /tmp/vagrant-cache/vagrant_omnibus'
+
 
 platforms:
   - name: ubuntu-12.04
+    driver:
+      vagrantfile_erb: Vagrantfile.erb
+
   #- name: ubuntu-14.04
   #- name: centos-6.4
   - name: centos-6.5
+    driver:
+      vagrantfile_erb: Vagrantfile.erb
+
 
 suites:
   - name: default
@@ -30,7 +38,7 @@ suites:
     attributes:
       ubuntu:
         mirror_site_url: http://ftp.jaist.ac.jp/pub/Linux/ubuntu/
-        version: 12.04
+        version: "12.04"
         need_deb_src: false
         need_update: true
       tz: "Asia/Tokyo"
