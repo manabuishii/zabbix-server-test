@@ -20,7 +20,7 @@ platforms:
 
 
 suites:
-  - name: default
+  - name: zabbix-server-test
     run_list:
       - recipe[timezone-ii]
       - recipe[apt]
