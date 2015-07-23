@@ -18,7 +18,7 @@ install
 
 test
 ====
-* mysql
+* mysql 3306
 * zabbix 10050
 * zabbix server 10051
 * apache 80
@@ -28,3 +28,5 @@ TODO
 
 to test using [infrataster](https://github.com/ryotarai/infrataster)
 research zabbix server use DNS default to connect to client
+
+using mysql cookbook 6

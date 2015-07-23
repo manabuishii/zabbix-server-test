@@ -1,9 +1,22 @@
 # update Apache2 setting for Apache 2.4
 #
 
+apacheservice="/etc/init.d/apache2"
+apachedirectory="/etc/apache2"
+case node[:platform]
+when "ubuntu"
+  apacheservice="/etc/init.d/apache2"
+  #apacheservice = "echo "
+  apachedirectory="/etc/apache2"
+when "centos"
+  apacheservice="service httpd"
+  apachedirectory="/etc/httpd"
+end
+
+
 ruby_block "edit apache2 zabbix localhost" do
   block do
-    rc = Chef::Util::FileEdit.new("/etc/apache2/sites-available/localhost.conf")
+    rc = Chef::Util::FileEdit.new("#{apachedirectory}/sites-available/localhost.conf")
     # RewriteLog
     rc.search_file_replace(/^(\s)*RewriteLog/, "\#RewriteLog")
     # Require all granted
@@ -14,22 +27,16 @@ ruby_block "edit apache2 zabbix localhost" do
     rc.insert_line_after_match(/^(\s)*Deny from all/, "Require all denied")
     rc.search_file_replace(/^(\s)*Deny from all/, "\#Deny from all")
     rc.search_file_replace(/^(\s)*Order Deny,Allow/, "\#Order Deny,Allow")
+    case node[:platform]
+    when "centos"
+      rc.search_file_replace(/^(\s)*Allow from 127.0.0.1/, "\#Allow from 127.0.0.1")
+    end
     # write file
     rc.write_file
   end
   action :nothing
-  subscribes :create, "template[/etc/apache2/sites-available/localhost.conf]" #, :immediatelly
+  subscribes :create, "template[#{apachedirectory}/sites-available/localhost.conf]" #, :immediatelly
   notifies :run, "bash[restartapache]", :delayed
-end
-
-apacheservice="/etc/init.d/apache2"
-
-case node[:platform]
-when "ubuntu"
-  apacheservice="/etc/init.d/apache2"
-  #apacheservice = "echo "
-when "centos"
-  apacheservice="/etc/init.d/httpd"
 end
 
 bash "restartapache" do

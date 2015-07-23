@@ -7,8 +7,17 @@ describe "mysql Daemon" do
     expect(port(3306)).to be_listening
   end
 
-  it "has a running service of mysql" do
-    expect(service("mysql")).to be_running
-  end
+end
+#
+servicename="mysql"
 
+if os[:family] == 'redhat'
+  servicename="mysqld"
+end
+
+describe 'mysqld Daemon' do
+  describe service(servicename) do
+     it { should be_enabled }
+     it { should be_running }
+  end
 end

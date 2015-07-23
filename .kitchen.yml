@@ -38,10 +38,20 @@ platforms:
         - ['./result', '/tmp/result']
     run_list:
       - recipe[yum]
+      - recipe[yum-mysql-community::mysql56]
     attributes:
       yum:
         main:
           keepcache:  True
+        mysql56-community:
+          repositoryid: "mysql-5.6-community"
+          description: "MySQL 5.6 Community Server"
+          baseurl: "http://repo.mysql.com/yum/mysql-5.6-community/el/$releasever/$basearch/"
+          gpgkey: "https://raw.githubusercontent.com/rs-services/equinix-public/master/cookbooks/db_mysql/files/centos/mysql_pubkey.asc"
+          failovermethod: "priority"
+          gpgcheck: true
+          enabled: true
+
 
 suites:
   - name: default
@@ -62,11 +72,13 @@ suites:
     attributes:
       tz: "Asia/Tokyo"
       mysql:
+        "bind_address": "0.0.0.0"
         "server_root_password": "ilovethispassword"
         "server_repl_password": "ilovethispassword"
         "server_debian_password": "ilovethispassword"
       zabbix:
         agent:
+          hostname: "localhost"
           checksum: "1d5b62790c04966944f09bb629cbdc2749f8767b5da7d246fce6aab1397741bd"
           branch: "ZABBIX%20Latest%20Stable"
           version: "2.2.5"
