@@ -7,7 +7,7 @@ describe "zabbix web" do
     getcommand = "wget http://localhost -O -"
   end
   describe command(getcommand) do
-    its(:stdout) { should match /Zabbix 2.2.11/ }
+    its(:stdout) { should match /Zabbix 2.2.14/ }
     its(:exit_status) { should eq 0 }
   end
 end

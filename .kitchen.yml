@@ -90,7 +90,7 @@ suites:
             - localhost
         server:
           branch: "ZABBIX%20Latest%20Stable"
-          version: "2.2.11"
+          version: "2.2.14"
           source_url: null
           install: true
           install_method: source
