@@ -23,6 +23,12 @@ test
 * zabbix server 10051
 * apache 80
 
+TIPS
+====
+
+if build fail with some prebuild file 404.
+Maybe upgrade is required.
+
 TODO
 ====
 
