@@ -80,9 +80,9 @@ suites:
       zabbix:
         agent:
           hostname: "zabbixservertest"
-          checksum: "1d5b62790c04966944f09bb629cbdc2749f8767b5da7d246fce6aab1397741bd"
+          checksum: "b3e37a5126173cac211d96d791ba1046cec0764d6aa1b8ad75e343d5a2543dda"
           branch: "ZABBIX%20Latest%20Stable"
-          version: "2.2.5"
+          version: "2.2.9"
           source_url: null
           install: true
           install_method: prebuild
