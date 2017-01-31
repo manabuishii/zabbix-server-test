@@ -1,5 +1,5 @@
 name "zabbix-server-test"
-version "0.1.5"
+version "0.1.6"
 
 depends 'mysql', '5.5.2'
 depends 'database', '2.3.0'
