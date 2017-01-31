@@ -58,6 +58,7 @@ suites:
   - name: default
     run_list:
       - recipe[timezone-ii]
+      - recipe[zabbix-server-test::install-zabbixapi]
       - recipe[mysql::client]
       - recipe[apache2]
       - recipe[apache2::mod_php5]
